@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 #include <windows.h>
 
 int AltaTrabajador() {  
@@ -12,9 +13,11 @@ int AltaTrabajador() {
     char NumeroEmpleado[100];
     char nombre[100];
     char apellido[100];
-    char salario[15];    
+    char salario;    
+    char ValidarSalario;
     char cargo[100];
     char estado[15];
+    int valor = 0;
        
     //Hacemos un conteos de los registros  
     archivo = fopen("Archivo.txt", "r"); // Abre el archivo en modo lectura   
@@ -24,7 +27,7 @@ int AltaTrabajador() {
     }   
     fclose(archivo);
 
-    printf("Cantidad de registros que desea ingresar: ");
+    printf("Cantidad de Registros que desea ingresar: ");
     scanf("%d", &cantRegistros);        
     printf("\nCantidad de registros actuales: %d\n", contador); 
    
@@ -36,8 +39,9 @@ int AltaTrabajador() {
         aux = 0;
         //Aqui validamos que no ingresen el mismo numero de empleado
         while (aux >= 0)
-        {    
-            printf("Ingrese el numero del trabajador: ");
+        {  
+            
+            printf("Ingrese el Numero del trabajador: ");
             scanf("%s", NumeroEmpleado);                
 
             archivo = fopen("Archivo.txt", "r"); // Abre el archivo en modo lectura  
@@ -53,7 +57,7 @@ int AltaTrabajador() {
 
             if (aux > 0)
             {
-                printf("El codigo del trabajador ingresado ya existe \n");
+                printf("El Codigo del trabajador ingresado ya existe \n");
                 aux = 0;
             }else{
                 aux = -1;
@@ -62,13 +66,25 @@ int AltaTrabajador() {
         }
         
        
-        printf("Ingrese el nombre del trabajador: ");
+        printf("Ingrese el Nombre del trabajador: ");
         scanf("%s", nombre);
-        printf("Ingrese el apellido del trabajador: ");
-        scanf("%s", apellido);
-        printf("Ingrese el salario del trabajador: ");
-        scanf("%s", salario);
-        printf("Ingrese el cargo del trabajador: ");
+        printf("Ingrese el Apellido del trabajador: ");
+        scanf("%s", apellido);                 
+
+        while (valor == 0)
+        {  
+            printf("Ingrese el Salario del trabajador: ");
+            scanf("%s", &salario);
+            
+            if(!isdigit(salario)){            
+                printf("El salario no es valido \n");
+                valor == 0;
+            }else{
+                valor = 1;
+            }
+        }        
+
+        printf("Ingrese el Cargo del trabajador: ");
         scanf("%s", cargo);
         strcpy(estado, "Activo");        
 
