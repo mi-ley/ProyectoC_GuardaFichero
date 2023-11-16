@@ -1,0 +1,5 @@
+
+2,002,Yamil,Arroliga,300000,desarrollador,Activo
+3,008,holo,b,2343,dj,Activo
+4,fff,hhh,kk,lll,¤¤,Activo
+5,maria,torres,maria,2345,programador,Activo
