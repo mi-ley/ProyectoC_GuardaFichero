@@ -6,6 +6,7 @@ int AltaTrabajador() {
     FILE *archivo;
     int cantRegistros;
     int contador = 0;
+    int contador2 = 1;
     int aux = 0;
     char identificador[100];
     char NumeroEmpleado[100];
@@ -25,13 +26,14 @@ int AltaTrabajador() {
 
     printf("Cantidad de registros que desea ingresar: ");
     scanf("%d", &cantRegistros);        
-     printf("\nCantidad de registros actuales: %d\n", contador);    
-    contador += 1;
-
+    printf("\nCantidad de registros actuales: %d\n", contador); 
+   
     do
-    {  
-        printf("\n Ingresando el registro %d\n", contador);
+    {   
         
+        printf("\n Ingresando el registro %d de %d\n", contador2, cantRegistros);        
+       
+        aux = 0;
         //Aqui validamos que no ingresen el mismo numero de empleado
         while (aux >= 0)
         {    
@@ -46,10 +48,13 @@ int AltaTrabajador() {
                     aux += 1;
                 }   
             }  
+            
+            fclose(archivo);
 
             if (aux > 0)
             {
                 printf("El codigo del trabajador ingresado ya existe \n");
+                aux = 0;
             }else{
                 aux = -1;
             }    
@@ -65,9 +70,7 @@ int AltaTrabajador() {
         scanf("%s", salario);
         printf("Ingrese el cargo del trabajador: ");
         scanf("%s", cargo);
-        strcpy(estado, "Activo");
-
-        fclose(archivo);
+        strcpy(estado, "Activo");        
 
         //Guarda los registros
         archivo = fopen("Archivo.txt", "a"); // Abre el archivo en modo "append" para agregar datos
@@ -76,6 +79,7 @@ int AltaTrabajador() {
             return 1;
         }
        
+        contador +=1;
         fprintf(archivo, "%d,", contador);
         fprintf(archivo, "%s,", NumeroEmpleado);
         fprintf(archivo, "%s,", nombre);
@@ -86,11 +90,11 @@ int AltaTrabajador() {
         fprintf(archivo, "\n");
 
         // Cierra el archivo
-        fclose(archivo);
+        fclose(archivo);  
 
-        contador += 1;
-
-    } while (cantRegistros >= contador);
+        contador2 += 1; 
+   
+    } while (cantRegistros >= contador2);
    
     printf("\n Los datos del cliente han sido guardados en clientes.txt. \n");
 
