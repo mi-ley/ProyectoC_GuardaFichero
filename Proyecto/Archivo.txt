@@ -1,5 +1,1 @@
-1,001,mileyda,trana,2000,programador,Activo
-2,yamil,yamilin,arroliga,3000,analista,Activo
-3,002,ines,castaneda,3000,programador,Activo
-4,marco,fuentes,cadiz,400,asistente,Activo
-5,003,manuel,robles,200,asistente,Activo
+1,002,mile,00,programador,Activo

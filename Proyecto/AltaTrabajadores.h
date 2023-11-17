@@ -2,6 +2,9 @@
 #include <string.h>
 #include <ctype.h>
 #include <windows.h>
+#define RED 4
+#define BLUE 1
+#define GREEN 2
 
 int AltaTrabajador() {  
     FILE *archivo;
@@ -13,12 +16,14 @@ int AltaTrabajador() {
     char NumeroEmpleado[100];
     char nombre[100];
     char apellido[100];
-    char salario;    
+    char salario;  
     char ValidarSalario;
     char cargo[100];
     char estado[15];
     int valor = 0;
-       
+
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
     //Hacemos un conteos de los registros  
     archivo = fopen("Archivo.txt", "r"); // Abre el archivo en modo lectura   
     char linea[1024]; 
@@ -76,7 +81,7 @@ int AltaTrabajador() {
             printf("Ingrese el Salario del trabajador: ");
             scanf("%s", &salario);
             
-            if(!isdigit(salario)){            
+            if(!isdigit(salario)){           
                 printf("El salario no es valido \n");
                 valor == 0;
             }else{

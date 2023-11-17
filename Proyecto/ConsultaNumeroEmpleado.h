@@ -1,5 +1,9 @@
 #include <stdio.h>
 #include <windows.h>
+#define RED 4
+#define BLUE 1
+#define GREEN 2
+
 #include <string.h>
 #include <ctype.h>  //
 
@@ -14,7 +18,8 @@ int ConsultasNumeroEmpleado() {
     char salario[15];    
     char cargo[100];
     char estado[15];  
-    
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
     archivo = fopen("Archivo.txt", "r"); // Abre el archivo en modo lectura
 
     if (archivo == NULL) {
